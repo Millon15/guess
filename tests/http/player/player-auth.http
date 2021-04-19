@@ -1,0 +1,4 @@
+POST http://127.0.0.1:8030/api/players
+Content-Type: application/json
+
+{"username":"first","password":"123123","email":"first@email.com","avatar":2}

@@ -12,7 +12,7 @@
 
         <field name="username" column="username" length="50" nullable="true" />
         <field name="password" column="password" length="500" nullable="true" />
-        <field name="isActive" column="isActive" length="500" nullable="true" />
+        <field name="isActive" column="is_active" length="500" nullable="true" />
         <field name="point" column="point" length="10" nullable="true" />
         <field name="email" column="email" length="100" />
         <field name="avatar" column="avatar" length="50" nullable="true" />
