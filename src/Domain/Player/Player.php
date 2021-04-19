@@ -4,9 +4,10 @@ namespace Guess\Domain\Player;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class Player
+class Player implements UserInterface
 {
     private int $id;
     private string $username;
@@ -16,7 +17,7 @@ class Player
     private int $point;
     private int $avatar;
     private bool $isActive;
-    private ArrayCollection $guesses;
+    private Collection $guesses;
 
     public function __construct()
     {
@@ -171,20 +172,34 @@ class Player
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getGuesses(): ArrayCollection
+    public function getGuesses(): Collection
     {
         return $this->guesses;
     }
 
     /**
-     * @param ArrayCollection $guesses
+     * @param Collection $guesses
      * @return Player
      */
-    public function setGuesses(ArrayCollection $guesses): Player
+    public function setGuesses(Collection $guesses): Player
     {
         $this->guesses = $guesses;
         return $this;
+    }
+
+    public function getRoles()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
     }
 }
