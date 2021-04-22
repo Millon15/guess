@@ -6,22 +6,22 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
-use Guess\Domain\Player\Player;
-use Guess\Domain\Player\PlayerRepositoryInterface;
+use Guess\Domain\League\League;
+use Guess\Domain\League\LeagueRepositoryInterface;
 
-class PlayerRepository extends ServiceEntityRepository implements PlayerRepositoryInterface
+class LeagueRepository extends ServiceEntityRepository implements LeagueRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Player::class);
+        parent::__construct($registry, League::class);
     }
 
     /**
-     * @param Player $model
+     * @param League $model
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function save(Player $model): void
+    public function save(League $model): void
     {
         $this->_em->persist($model);
         $this->_em->flush();

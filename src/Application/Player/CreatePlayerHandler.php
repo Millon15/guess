@@ -1,6 +1,6 @@
 <?php
 
-namespace Guess\Application;
+namespace Guess\Application\Player;
 
 use Exception;
 use Guess\Domain\Player\Player;
@@ -10,25 +10,25 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class CreatePlayerHandler
 {
     public function __construct(
-        private PlayerRepositoryInterface $playerRepository,
+        private PlayerRepositoryInterface $repository,
         private UserPasswordEncoderInterface $encoder,
     ) {
     }
 
     /**
-     * @param array $playerData
+     * @param array $data
      * @throws Exception
      */
-    public function handle(array $playerData): void
+    public function handle(array $data): void
     {
         $player = (new Player())
-            ->setUsername($playerData['username'])
-            ->setAvatar($playerData['avatar'])
-            ->setEmail($playerData['email']);
-        $player->setPassword($this->encoder->encodePassword($player, $playerData['password']));
+            ->setUsername($data['username'])
+            ->setAvatar($data['avatar'])
+            ->setEmail($data['email']);
+        $player->setPassword($this->encoder->encodePassword($player, $data['password']));
 
         try {
-            $this->playerRepository->save($player);
+            $this->repository->save($player);
         } catch (Exception) {
             throw new Exception('User cannot be saved');
         }

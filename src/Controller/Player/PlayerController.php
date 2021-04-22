@@ -3,7 +3,7 @@
 namespace Guess\Controller\Player;
 
 use Exception;
-use Guess\Application\CreatePlayerHandler;
+use Guess\Application\Player\CreatePlayerHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

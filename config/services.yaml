@@ -31,3 +31,15 @@ services:
     # please note that last definitions always *replace* previous ones
 
     Guess\Domain\Player\PlayerRepositoryInterface: '@Guess\Infrastructure\Doctrine\PlayerRepository'
+    Guess\Domain\League\LeagueRepositoryInterface: '@Guess\Infrastructure\Doctrine\LeagueRepository'
+    Guess\Infrastructure\Services\FetchLeaguesInterface: '@Guess\Infrastructure\Services\FetchLeagues'
+    Guess\Application\Services\FileUploaderInterface: '@Guess\Infrastructure\S3\FileUploader'
+    Guess\Infrastructure\Services\ProviderInterface: '@Guess\Infrastructure\RapidApi\RapidApiClient'
+
+    Guess\Infrastructure\S3\FileUploader:
+        arguments:
+            $s3RegionName: '%env(string:AWS_REGION)%'
+
+    Guess\Infrastructure\RapidApi\RapidApiClient:
+        arguments:
+            $apiKey: '%env(string:RAPID_API_KEY)%'
