@@ -1,5 +1,6 @@
 init:
-	docker-compose build --force-rm --no-cache
+	docker-compose up -d --force-recreate --build
+	docker exec -it app composer install
 	make up
 
 up:

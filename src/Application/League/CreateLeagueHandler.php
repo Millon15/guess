@@ -9,9 +9,10 @@ use Guess\Domain\League\LeagueRepositoryInterface;
 
 class CreateLeagueHandler
 {
-    private const BUCKET_NAME = 'guess-league-logos';
+    private const BUCKET_NAME = 'millons-guess';
 
     public function __construct(
+        private string $s3RegionName,
         private LeagueRepositoryInterface $repository,
         private FileUploaderInterface $logoUploader,
     ) {
@@ -30,7 +31,12 @@ class CreateLeagueHandler
             throw new Exception('We need League logo to save the League');
         }
 
-        $this->logoUploader->upload(self::BUCKET_NAME, $data['name'], $data['logo']);
+        $this->logoUploader->upload(
+            self::BUCKET_NAME,
+            $this->s3RegionName,
+            $data['name'],
+            $data['logo']
+        );
 
         try {
             $this->repository->save(

@@ -1,5 +1,9 @@
-.idea
-.env
+/.idea
+/.env
+/.env.*
+!/.env.dist
+/.run
+/.DS*
 
 ###> symfony/framework-bundle ###
 /.env.local

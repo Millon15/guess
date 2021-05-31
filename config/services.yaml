@@ -36,7 +36,7 @@ services:
     Guess\Application\Services\FileUploaderInterface: '@Guess\Infrastructure\S3\FileUploader'
     Guess\Infrastructure\Services\ProviderInterface: '@Guess\Infrastructure\RapidApi\RapidApiClient'
 
-    Guess\Infrastructure\S3\FileUploader:
+    Guess\Application\League\CreateLeagueHandler:
         arguments:
             $s3RegionName: '%env(string:AWS_REGION)%'
 

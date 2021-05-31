@@ -10,17 +10,22 @@ class FileUploader implements FileUploaderInterface
 {
     private string $s3ObjectName;
     private string $bucketName;
+    private string $s3RegionName;
 
     public function __construct(
-        private string $s3RegionName,
         private S3Client $client,
     ) {
     }
 
-    public function upload(string $bucketName, string $objectName, string $imageUrl): void
-    {
+    public function upload(
+        string $bucketName,
+        string $s3RegionName,
+        string $objectName,
+        string $imageUrl
+    ): void {
         $this->s3ObjectName = strtolower((new AsciiSlugger())->slug($objectName).'.png');
         $this->bucketName = $bucketName;
+        $this->s3RegionName = $s3RegionName;
 
         $this->client->putObject([
             'Bucket' => $this->bucketName,
